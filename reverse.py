@@ -12,10 +12,8 @@ Usage:
 
 import sys
 
-if len(sys.argv) < 2:
-    print(
-        "Need a command line argument (waypoint file.)")
-    sys.exit()
+args = sys.argv[1:]
+nargs = len(args)
 
 
 def filtered_tuples(file_name):
@@ -29,17 +27,31 @@ def filtered_tuples(file_name):
                 yield (milage, descriptor)
 
 
+if nargs < 1:
+    print(
+        "Need a command line argument (waypoint file.)")
+    sys.exit()
+
+if nargs > 1:
+    dest = args[1]
+else:
+    print("Enter nothing to have output printed to the terminal or..")
+    dest = input("Provide a destination file name: ")
+
 listing = [tup for tup in filtered_tuples(sys.argv[1])]
 trip_distance = float(listing[-1][0])
 reverse_listing = ["{:<8.1f}{}".format(
                     trip_distance - float(entry[0]), entry[1])
                     for entry in reversed(listing)]
 
-
-if len(sys.argv) == 3:
-    with open(sys.argv[2], 'w') as sink:
-        for line in reverse_listing:
-            sink.write(line+'\n')
+if dest:
+    sink = open(dest, 'w')
+    need2close = True
 else:
-    for line in reverse_listing:
-        print(line)
+    sink = sys.stdout
+    need2close = False
+
+for line in reverse_listing:
+    print(line, file=sink)
+if need2close:
+    sink.close()
