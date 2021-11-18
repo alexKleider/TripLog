@@ -4,6 +4,7 @@
 
 """
 Takes a 'waypoints' file and reverses the entries.
+e.g. Compare files 'nov2021waypoints' and 'nov_reversed'
 
 Usage:
     ./reverse.py source_file [destination_file]
