@@ -1,0 +1,5 @@
+# File: README
+
+A place to store trip logs and develop a utility (reverse.py) that
+will take a trip log as input and return a log of the same trip going
+in the oposite direction.
