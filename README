@@ -1,9 +1,0 @@
-# File: README
-
-A place to store trip logs and develop a utility (reverse.py) that
-will take a trip log as input and return a log of the same trip going
-in the oposite direction.
-
-Trip logs: each valid line must begin with distance (Km or miles)
-followed by text. All other lines must begin with '#' (ignored.)
-Out put is a listing of the same waypoints in reverse order.
